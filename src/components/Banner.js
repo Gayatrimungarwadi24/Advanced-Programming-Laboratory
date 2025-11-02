@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-import campusImg from "../assets/images/campus.jpg"; // <-- Place your image inside assets/images/
+import campusImg from "../assets/images/campus.jpg"; 
 
 export default function Banner() {
   return (

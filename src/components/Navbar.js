@@ -1,8 +1,16 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
-import logo from "../assets/images/logo.png"; // <-- Place your logo in assets/images folder
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Box,
+} from "@mui/material";
+import { Link } from "react-router-dom";
+import logo from "../assets/images/logo.png";
 
 export default function Navbar() {
+  // The menuItems array is now simpler, without the "submenu" properties.
   const menuItems = [
     { label: "Home", path: "/" },
     { label: "About Us", path: "/about" },
@@ -33,7 +41,12 @@ export default function Navbar() {
         {/* Menu Items */}
         <Box>
           {menuItems.map((item, i) => (
-            <Button key={i} color="inherit" href={item.path}>
+            <Button
+              key={i}
+              component={Link} // Use the Link component for navigation
+              to={item.path}     // The path to navigate to on click
+              color="inherit"
+            >
               {item.label}
             </Button>
           ))}
