@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography, Container } from "@mui/material";
-import Footer from "../components/Footer";
 
 export default function CampusLife() {
   return (
@@ -16,7 +15,6 @@ export default function CampusLife() {
           </Typography>
         </Container>
       </Box>
-      <Footer />
     </>
   );
 }

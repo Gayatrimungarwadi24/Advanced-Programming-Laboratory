@@ -1,7 +1,5 @@
 import React from "react";
 import { Box, Typography, Container } from "@mui/material";
-import Footer from "../components/Footer";
-
 
 export default function Placements() {
   return (
@@ -17,7 +15,6 @@ export default function Placements() {
           </Typography>
         </Container>
       </Box>
-      <Footer />
     </>
   );
 }

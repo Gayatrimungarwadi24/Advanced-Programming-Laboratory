@@ -52,7 +52,7 @@ export default function ApplicationForm({ open, handleClose }) {
 
     try {
       // Send the data to your new backend endpoint
-      const res = await fetch('http://localhost:5000/api/applications', {
+      const res = await fetch('/api/applications', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

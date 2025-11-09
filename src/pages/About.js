@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography, Container, Paper } from "@mui/material";
-import Footer from "../components/Footer";
 
 export default function About() {
   return (
@@ -22,7 +21,6 @@ export default function About() {
           </Paper>
         </Container>
       </Box>
-      <Footer />
     </>
   );
 }

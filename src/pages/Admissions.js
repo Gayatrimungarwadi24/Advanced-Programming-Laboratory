@@ -17,8 +17,9 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  Button
 } from "@mui/material";
-import Footer from "../components/Footer";
+import ApplicationForm from "../components/ApplicationForm"; // Import the form
 
 // Data for the sidebar navigation
 const sidebarLinks = [
@@ -60,17 +61,20 @@ function TabPanel(props) {
 
 export default function Admissions() {
   const [value, setValue] = useState(0);
+  const [firstYearCourses, setFirstYearCourses] = useState([]);
 
   // --- CHANGES START ---
-  // Add state to hold the courses fetched from the backend
-  const [firstYearCourses, setFirstYearCourses] = useState([]);
+  // State to manage the modal
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   // This 'useEffect' hook runs once when the component first loads
   useEffect(() => {
     // Define an async function to fetch data
     const fetchCourses = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/admissions/first-year');
+        const res = await fetch('/api/admissions/first-year');
         const data = await res.json();
         setFirstYearCourses(data); // Put the fetched data into state
       } catch (err) {
@@ -107,6 +111,15 @@ export default function Admissions() {
                 ))}
               </List>
             </Paper>
+            <Button 
+              variant="contained" 
+              color="primary" 
+              fullWidth 
+              sx={{ mt: 2 }}
+              onClick={handleOpen}
+            >
+              Apply Now
+            </Button>
           </Grid>
 
           {/* Right Content */}
@@ -164,7 +177,7 @@ export default function Admissions() {
           </Grid>
         </Grid>
       </Container>
-      <Footer />
+      <ApplicationForm open={open} handleClose={handleClose} />
     </>
   );
 }

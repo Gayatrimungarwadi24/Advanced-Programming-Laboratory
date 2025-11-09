@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography, Container } from "@mui/material";
-import Footer from "../components/Footer";
 
 export default function Departments() {
   return (
@@ -16,7 +15,6 @@ export default function Departments() {
           </Typography>
         </Container>
       </Box>
-      <Footer />
     </>
   );
 }

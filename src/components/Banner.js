@@ -2,7 +2,10 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import campusImg from "../assets/images/campus.jpg"; 
 
-export default function Banner() {
+// --- CHANGES START ---
+// Accept an onApplyClick prop
+export default function Banner({ onApplyClick }) { 
+// --- CHANGES END ---
   return (
     <Box
       sx={{
@@ -24,6 +27,9 @@ export default function Banner() {
         variant="contained"
         color="primary"
         sx={{ mt: 3, px: 4, py: 1 }}
+        // --- CHANGES START ---
+        onClick={onApplyClick} // Use the passed-in prop
+        // --- CHANGES END ---
       >
         Apply Now
       </Button>

@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Box } from "@mui/material"; // Import Box
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer"; // Import Footer
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Academics from "./pages/Academics";
@@ -14,7 +16,10 @@ import Contact from "./pages/Contact";
 function App() {
   return (
     <Router>
-      <Navbar />
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <Navbar />
+        {/* Content area that grows */}
+        <Box component="main" sx={{ flexGrow: 1 }}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -26,6 +31,9 @@ function App() {
         <Route path="/placements" element={<Placements />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      </Box>
+        <Footer /> {/* Footer is now here */}
+      </Box>
     </Router>
   );
 }
