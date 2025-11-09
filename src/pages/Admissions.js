@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // Import useEffect
 import {
   Box,
   Typography,
@@ -32,16 +32,9 @@ const sidebarLinks = [
   "Information Brochure",
 ];
 
-// Data for the 'First Year' courses table
-const firstYearCourses = [
-  { name: "Chemical Engineering", intake: 60 },
-  { name: "Civil Engineering", intake: 120 },
-  { name: "Computer Science and Engineering", intake: 360 },
-  { name: "Computer Science and Engineering (Artificial Intelligence and Machine Learning)", intake: 180 },
-  { name: "Computer Science and Engineering (Data Science)", intake: 180 },
-  { name: "Electronics and Telecommunication Engineering", intake: 120 },
-  { name: "Mechanical Engineering", intake: 120 },
-];
+// --- CHANGES START ---
+// REMOVED the hard-coded 'firstYearCourses' array
+// --- CHANGES END ---
 
 // A helper component to manage the content of each tab
 function TabPanel(props) {
@@ -67,6 +60,28 @@ function TabPanel(props) {
 
 export default function Admissions() {
   const [value, setValue] = useState(0);
+
+  // --- CHANGES START ---
+  // Add state to hold the courses fetched from the backend
+  const [firstYearCourses, setFirstYearCourses] = useState([]);
+
+  // This 'useEffect' hook runs once when the component first loads
+  useEffect(() => {
+    // Define an async function to fetch data
+    const fetchCourses = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/api/admissions/first-year');
+        const data = await res.json();
+        setFirstYearCourses(data); // Put the fetched data into state
+      } catch (err) {
+        console.error("Error fetching courses:", err);
+      }
+    };
+
+    fetchCourses(); // Call the function
+  }, []); // The empty array [] means this effect runs only once
+
+  // --- CHANGES END ---
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -123,13 +138,17 @@ export default function Admissions() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
+                      {/* --- CHANGES START --- */}
+                      {/* Map over the 'firstYearCourses' state variable */}
                       {firstYearCourses.map((row, index) => (
-                        <TableRow key={row.name}>
+                        // Use row._id from MongoDB as the key
+                        <TableRow key={row._id}> 
                           <TableCell>{index + 1}</TableCell>
                           <TableCell>{row.name}</TableCell>
                           <TableCell align="right">{row.intake}</TableCell>
                         </TableRow>
                       ))}
+                      {/* --- CHANGES END --- */}
                     </TableBody>
                   </Table>
                 </TableContainer>
