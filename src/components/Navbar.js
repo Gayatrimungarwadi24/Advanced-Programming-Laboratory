@@ -10,17 +10,13 @@ import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 
 export default function Navbar() {
-  // The menuItems array is now simpler, without the "submenu" properties.
   const menuItems = [
     { label: "Home", path: "/" },
     { label: "About Us", path: "/about" },
     { label: "Academics", path: "/academics" },
     { label: "Departments", path: "/departments" },
-    { label: "Research", path: "/research" },
     { label: "Admissions", path: "/admissions" },
     { label: "Campus Life", path: "/campus-life" },
-    { label: "Placements", path: "/placements" },
-    { label: "Contact", path: "/contact" },
   ];
 
   return (
